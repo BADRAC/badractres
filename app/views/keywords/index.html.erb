@@ -1,0 +1,104 @@
+<% provide(:title, 'Palavras-chave') %>
+
+<h1>Edição</h1>
+
+<table class="table table-striped table-bordered table-condensed" style="width: 100%">
+  <tbody>     
+    <tr>
+      <td class="text-center" style="width: 12%">Edição</td>
+      <td><%= @edition.e_name %></td>
+    <tr/>
+  </tbody>
+</table>
+
+<h1>Artigo</h1>
+
+<tr>
+<table class="table table-striped table-bordered table-condensed" style="width: 100%">
+  <tbody>     
+    <tr>
+      <td class="text-center" style="width: 12%">Título</td>
+      <td><%= @article.title %></td>
+    <tr/>
+    <tr>
+      <td class="text-center" style="width: 12%">Resumo</td> 
+      <td><%= @article.abstract %></td>
+    <tr/>  
+    <tr>
+      <td class="text-center" style="width: 12%">URL de Acesso</td>
+      <td><%= @article.url %></td>
+    <tr/>     
+  </tbody>
+</table>
+
+<div class="row">
+  <div class="col-md-3">
+    <%= link_to 'Editar este artigo', edit_edition_article_path(@article.edition_id, @article), :class => 'btn btn-primary btn-sm btn-block'%>
+  </div>
+  <div class="col-md-3">
+      <%= link_to 'Remover este Artigo', @article, :class => 'btn btn-danger btn-sm btn-block disabled',  method: :delete, data: { confirm: 'Você tem certeza que deseja remover permanentemente este artigo e todas as palavras-chave e autores a ele vinculados?'} %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to 'Voltar', edition_articles_path(@edition), :class => 'btn btn-default btn-sm' %>  
+  </div>
+</div>
+
+</br></br></br>
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-striped table-bordered table-condensed" style="width: 100%">
+      <thead>
+        <tr>
+          <th class="text-center">Palavra-chave</th>
+          <th class="text-center">Editar/Remover</th> 
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @keywords.each do |keyword| %>
+          <tr>
+            <td><%=keyword.kw_name%></td>
+            <td class="text-center"><%=link_to 'Editar', edit_article_keyword_path(@article.id, keyword.id)%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <table class="table table-striped table-bordered table-condensed" style="width: 100%">
+      <thead>
+        <tr>
+          <th class="text-center">Autores</th>
+          <th class="text-center">Editar/Remover</th> 
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @opas.each do |opa| %>
+          <tr>
+            <td><%= opa.fullname %></td>
+            <td class="text-center"><%=link_to 'Editar', edit_article_author_path(@article, opa.id)%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="row">
+   
+  <div class="col-md-3">
+    <%= link_to 'Criar uma nova Palavras-chave', new_article_keyword_path(@article.id), :class => 'btn btn-primary btn-sm btn-block'%>
+  </div>
+<div class="col-md-3">
+  </div>
+  <div class="col-md-3">
+    <%= link_to 'Criar um novo Autor', new_article_author_path(@article.id), :class => 'btn btn-primary btn-sm btn-block'%>
+  </div>
+
+  <div class="col-md-3">
+  </div>
+</div>

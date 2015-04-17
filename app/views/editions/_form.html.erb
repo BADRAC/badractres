@@ -1,0 +1,31 @@
+<%= form_for ([@journal, @edition]), :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_field :e_name, :class => 'form-control input' , :placeholder=>"Nome da Edição"%>
+    </div>
+  </div>
+
+<!-- Apenas o ano da edição. Serve como ordenação. -->
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.label :"Ano da Edição" %><br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1">
+      <%= f.date_select :e_date, discard_day:true, discard_month:true, start_year: Date.today.year, end_year: 1990 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.submit "Criar uma nova Edição",  :class => 'btn btn-primary btn-sm btn-block' %>
+    </div>
+  </div>
+
+<% end %>
+

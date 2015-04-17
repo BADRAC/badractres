@@ -1,0 +1,31 @@
+<%= form_for ([@edition, @article]), :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+
+  <div class="row">
+      <div class="col-md-6"> 
+        <%= f.text_field :title, :class => 'form-control input', :placeholder=>"Título do Artigo" %>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-6"> 
+        <%= f.text_field :abstract, :class => 'form-control input', :placeholder=>"Resumo" %>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-6"> 
+        <%= f.text_field :url, :class => 'form-control input', :placeholder=>"Url - Use http(s)://www." %>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-3"> 
+        <%= f.submit "Criar um novo Artigo", :class => 'btn btn-primary btn-sm btn-block'  %>
+      </div>
+  </div>
+  
+<% end %>
+
+  
